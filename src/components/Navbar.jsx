@@ -3,9 +3,9 @@ import React from "react";
 export default function Navbar({ fixed }) {
 
   const navigation = [
-    { name: 'Dashboard', href: '#', current: true, icon: 'fab fa-facebook-square'},
-    { name: 'Team', href: '#', current: false, icon: 'fab fa-facebook-square'},
-    { name: 'Projects', href: '#', current: false, icon: 'fab fa-facebook-square'},
+    { name: 'Dashboard', href: '#', current: true, icon: 'fab fa-facebook-square' },
+    { name: 'Team', href: '#', current: false, icon: 'fab fa-facebook-square' },
+    { name: 'Projects', href: '#', current: false, icon: 'fab fa-facebook-square' },
   ]
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
@@ -20,7 +20,7 @@ export default function Navbar({ fixed }) {
               pink Tailwind Starter Kit
             </a>
             <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -35,32 +35,32 @@ export default function Navbar({ fixed }) {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              {navigation.map(link =>{
-                return 
+              {navigation.map(link => {
+                return
               })}
 
               <li className="nav-item">
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
                   href="#pablo"
                 >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Share</span>
+                  <i className="fab fa-facebook-square text-lg leading-lg opacity-75"></i><span className="ml-2">Share</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
                   href="#pablo"
                 >
-                  <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Tweet</span>
+                  <i className="fab fa-twitter text-lg leading-lg opacity-75"></i><span className="ml-2">Tweet</span>
                 </a>
               </li>
               <li className="nav-item">
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
                   href="#pablo"
                 >
-                  <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i><span className="ml-2">Pin</span>
+                  <i className="fab fa-pinterest text-lg leading-lg opacity-75"></i><span className="ml-2">Pin</span>
                 </a>
               </li>
             </ul>
