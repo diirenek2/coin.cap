@@ -2,6 +2,9 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
+import Input from './layouts/Input'
+import Select from './layouts/Select'
+
 export const Modal = ({open, setOpen}) => {
   const cancelButtonRef = useRef(null)
 
@@ -50,6 +53,16 @@ export const Modal = ({open, setOpen}) => {
                       <p className="text-sm text-gray-500">
                         En este emergente podras agregar los diferentes tipos de operaciones.
                       </p>
+                      <Select />
+
+
+
+                      
+                      <Input
+                        id = {1}
+                        placeholder = {1}
+                        label = {'Tipo'}
+                      />
 
                     </div>
                   </div>

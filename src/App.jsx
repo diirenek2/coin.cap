@@ -19,7 +19,7 @@ const App = () => {
         <PlusCircleIcon className="h-9 w-9" aria-hidden="true" />
       </button>
 
-      <Modal 
+      <Modal
         open={openModal}
         setOpen={setOpenModal}
       />
