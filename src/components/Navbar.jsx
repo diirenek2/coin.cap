@@ -8,13 +8,13 @@ export default function Navbar({ fixed }) {
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
             <a
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-indigo-700"
+              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-indigo-600 hover:text-indigo-700"
               href="#pablo"
             >
               pink Tailwind Starter Kit
             </a>
             <button
-              className="text-indigo-700 cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+              className="text-indigo-600 hover:text-indigo-700 cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
               type="button"
               onClick={() => setNavbarOpen(!navbarOpen)}
             >
@@ -29,28 +29,28 @@ export default function Navbar({ fixed }) {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-              <li className="nav-item">
+              <li className="nav-item text-indigo-600 hover:text-indigo-700">
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-indigo-700 hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
                   href="#pablo"
                 >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-indigo-700 opacity-75"></i><span className="ml-2">Share</span>
+                  <i className="fab fa-facebook-square text-lg leading-lg"></i><span className="ml-2">Share</span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item text-indigo-600 hover:text-indigo-700">
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-indigo-700 hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
                   href="#pablo"
                 >
-                  <i className="fab fa-twitter text-lg leading-lg text-indigo-700 opacity-75"></i><span className="ml-2">Tweet</span>
+                  <i className="fab fa-twitter text-lg leading-lg"></i><span className="ml-2">Tweet</span>
                 </a>
               </li>
-              <li className="nav-item">
+              <li className="nav-item text-indigo-600 hover:text-indigo-700">
                 <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-indigo-700 hover:opacity-75"
+                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
                   href="#pablo"
                 >
-                  <i className="fab fa-pinterest text-lg leading-lg text-indigo-700 opacity-75"></i><span className="ml-2">Pin</span>
+                  <i className="fab fa-pinterest text-lg leading-lg "></i><span className="ml-2">Pin</span>
                 </a>
               </li>
             </ul>
