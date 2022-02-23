@@ -2,12 +2,13 @@ import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationIcon } from '@heroicons/react/outline'
 
+import { coins } from '../data/coins'
+
 import Input from './layouts/Input'
-import Select from './layouts/Select'
+import Select from './layouts/SelectImage'
 
 export const Modal = ({open, setOpen}) => {
   const cancelButtonRef = useRef(null)
-
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
@@ -39,7 +40,7 @@ export const Modal = ({open, setOpen}) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="inline-block align-bottom  bg-white rounded text-left overflow-show shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="inline-block align-bottom bg-white rounded text-left overflow-show shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
@@ -53,14 +54,13 @@ export const Modal = ({open, setOpen}) => {
                       <p className="text-sm text-gray-500">
                         En este emergente podras agregar los diferentes tipos de operaciones.
                       </p>
-                      <Select />
-
-
-
-
+                      <Select
+                        list = {coins}
+                      />
+                      
                       <Input
-                        id = {1}
-                        placeholder = {1}
+                        id = {'id'}
+                        placeholder = {'placeholder'}
                         label = {'Tipo'}
                       />
 
