@@ -8,18 +8,20 @@ function classNames(...classes) {
 }
 
 export default function SelectImage(props) {
-  const { list } = props;
+  const {id, label = '', list } = props;
   const [selected, setSelected] = useState(list[0])
 
   return (
     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block text-sm font-medium text-gray-700">Assigned to</Listbox.Label>
+          <Listbox.Label className="block text-sm font-medium text-gray-700">{label}</Listbox.Label>
           <div className="mt-1 relative">
-            <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-3 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <span className="flex items-center">
-                <img src={selected.image} alt="" className="flex-shrink-0 h-6 w-6 rounded-full" />
+                {selected.image &&
+                  <img src={selected.image} alt="" className="flex-shrink-0 h-5 w-5 rounded-full" />
+                }
                 <span className="ml-3 block truncate">{selected.name}</span>
               </span>
               <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -49,7 +51,9 @@ export default function SelectImage(props) {
                     {({ selected, active }) => (
                       <>
                         <div className="flex items-center">
-                          <img src={element.image} alt="" className="flex-shrink-0 h-6 w-6 rounded-full" />
+                          {element.image &&
+                            <img src={element.image} alt="" className="flex-shrink-0 h-5 w-5 rounded-full" />
+                          }
                           <span
                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
                           >

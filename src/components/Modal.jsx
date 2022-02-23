@@ -5,7 +5,7 @@ import { ExclamationIcon } from '@heroicons/react/outline'
 import { coins } from '../data/coins'
 
 import Input from './layouts/Input'
-import Select from './layouts/SelectImage'
+import SelectImage from './layouts/SelectImage'
 
 export const Modal = ({open, setOpen}) => {
   const cancelButtonRef = useRef(null)
@@ -43,10 +43,7 @@ export const Modal = ({open, setOpen}) => {
             <div className="inline-block align-bottom bg-white rounded text-left overflow-show shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
               <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 rounded">
                 <div className="sm:flex sm:items-start">
-                  <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <ExclamationIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
-                  </div>
-                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                     <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900">
                       Nueva Transaccion
                     </Dialog.Title>
@@ -54,16 +51,40 @@ export const Modal = ({open, setOpen}) => {
                       <p className="text-sm text-gray-500">
                         En este emergente podras agregar los diferentes tipos de operaciones.
                       </p>
-                      <Select
-                        list = {coins}
-                      />
-                      
-                      <Input
-                        id = {'id'}
-                        placeholder = {'placeholder'}
-                        label = {'Tipo'}
-                      />
+                      <div className='flex items-center justify-between mt-5 mb-3'>
+                        <div className='w-3/5 pr-1'>
+                          <SelectImage
+                            id = {'coin'}
+                            list = {coins}
+                          />
+                        </div>
+                        <div className='w-2/5 pl-1'>
+                        <SelectImage
+                          id = {'type'}
+                          list = {[  
+                            {id: 1, name: 'Compra'},
+                            {id: 2, name: 'Venta'},
+                            {id: 3, name: 'Ingreso'},
+                            {id: 4, name: 'Egreso'},
+                          ]}
+                        />
+                        </div>
+                      </div>
 
+                      <div className='mt-5 mb-3 w-full'>
+                        <Input
+                          id = {'amount'}
+                          type = {'number'}
+                          placeholder = {'Cantidad'}
+                        />
+                      </div>
+                      <div className='mt-5 mb-3 w-full'>
+                        <Input
+                          id = {'price'}
+                          type = {'number'}
+                          placeholder = {'Precio'}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -71,10 +92,10 @@ export const Modal = ({open, setOpen}) => {
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-gray-300 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => setOpen(false)}
                 >
-                  Deactivate
+                  Confirmar
                 </button>
                 <button
                   type="button"
@@ -82,7 +103,7 @@ export const Modal = ({open, setOpen}) => {
                   onClick={() => setOpen(false)}
                   ref={cancelButtonRef}
                 >
-                  Cancel
+                  Cancelar
                 </button>
               </div>
             </div>
