@@ -1,6 +1,5 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationIcon } from '@heroicons/react/outline'
 
 import { coins } from '../data/coins'
 
@@ -8,6 +7,8 @@ import Input from './layouts/Input'
 import SelectImage from './layouts/SelectImage'
 
 export const Modal = ({open, setOpen}) => {
+  const [amount, setAmount] = useState(0)
+  const [price, setPrice] = useState(0)
   const cancelButtonRef = useRef(null)
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -61,7 +62,7 @@ export const Modal = ({open, setOpen}) => {
                         <div className='w-2/5 pl-1'>
                         <SelectImage
                           id = {'type'}
-                          list = {[  
+                          list = {[
                             {id: 1, name: 'Compra'},
                             {id: 2, name: 'Venta'},
                             {id: 3, name: 'Ingreso'},
@@ -76,6 +77,8 @@ export const Modal = ({open, setOpen}) => {
                           id = {'amount'}
                           type = {'number'}
                           placeholder = {'Cantidad'}
+                          value = {amount}
+                          onChange = {e => setAmount(e.target.value)}
                         />
                       </div>
                       <div className='mt-5 mb-3 w-full'>
@@ -83,6 +86,8 @@ export const Modal = ({open, setOpen}) => {
                           id = {'price'}
                           type = {'number'}
                           placeholder = {'Precio'}
+                          value = {price}
+                          onChange = {e => setPrice(e.target.value)}
                         />
                       </div>
                     </div>
