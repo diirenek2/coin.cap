@@ -17,7 +17,7 @@ export default function SelectImage(props) {
         <>
           <Listbox.Label className="block text-sm font-medium text-gray-700">{label}</Listbox.Label>
           <div className="mt-1 relative">
-            <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-3 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-3 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300 sm:text-sm">
               <span className="flex items-center">
                 {selected.image &&
                   <img src={selected.image} alt="" className="flex-shrink-0 h-5 w-5 rounded-full" />
