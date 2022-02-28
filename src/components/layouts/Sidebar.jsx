@@ -4,12 +4,13 @@
    return (
     <div
       id="sidebar"
-      className={`flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64  shrink-0 bg-slate-800 p-4 transition-all duration-200 ease-in-out`}
+      className={`shadow flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64  shrink-0 bg-slate-800 p-4 transition-all duration-200 ease-in-out`}
     >
       {/* Sidebar header */}
-      <div className="flex justify-between mb-10 pr-3 sm:px-2">
-        <a aria-current="page" className="block active" href="/">
-          logo
+      <div className="flex flex-row justify-center items-center mb-5 pr-3 sm:px-2">
+        <a aria-current="page" className="active font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow-500" href="/">
+          <span >Coin</span>
+          <span className="text-slate-200">-cap</span>
         </a>
       </div>
 
