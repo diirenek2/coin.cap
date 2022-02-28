@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Navbar({ fixed }) {
+export const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>

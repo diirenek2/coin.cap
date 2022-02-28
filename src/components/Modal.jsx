@@ -3,8 +3,8 @@ import { Dialog, Transition } from '@headlessui/react'
 
 import { coins } from '../data/coins'
 
-import Input from './layouts/Input'
-import SelectImage from './layouts/SelectImage'
+import Input from './layouts/forms/Input'
+import SelectImage from './layouts/forms/SelectImage'
 
 export const Modal = ({open, setOpen, saveTransaction}) => {
   const [error, setError] = useState(false)
