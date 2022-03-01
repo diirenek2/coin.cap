@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Sidebar } from './components/layouts/Sidebar';
 import { Navbar } from './components/layouts/Navbar'
 import { Portfolio } from './components/Portfolio'
-import { Modal } from './components/Modal'
+import { Modal } from './components/layouts/Modal'
 import { TransactionsHistory } from './components/TransactionsHistory'
 
 
@@ -23,6 +23,7 @@ const App = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
+      
       <Sidebar />
 
       {/* Content area */}
@@ -30,13 +31,28 @@ const App = () => {
 
         {/*  Site header */}
         <Navbar />
+        
 
         <main>
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-            dd
-          </div>
+
         </main>
+
+        {/*  Fiexed */}
+        <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+          <button className="fixed text-slate-300 hover:text-white bottom-4 right-4 bg-yellow-600 active:bg-yellow-500 font-bold uppercase text-sm px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
+            type="button"
+            onClick={() => setOpenModal(true)}
+          >
+            <PlusCircleIcon className="h-9 w-9" aria-hidden="true" />
+          </button>
+        </div>
+        <Modal
+          open={openModal}
+          setOpen={setOpenModal}
+          saveTransaction = {saveTransaction}
+        />
       </div>
+
   </div>
   )
 }
