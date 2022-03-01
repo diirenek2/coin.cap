@@ -4,7 +4,7 @@ import { Sidebar } from './components/layouts/Sidebar';
 import { Navbar } from './components/layouts/Navbar'
 import { Portfolio } from './components/Portfolio'
 import { Modal } from './components/layouts/Modal'
-import { TransactionsHistory } from './components/TransactionsHistory'
+import { OperationsHistory } from './components/OperationsHistory'
 
 
 import { generateId } from './helpers'
@@ -12,11 +12,11 @@ import { PlusCircleIcon } from '@heroicons/react/outline'
 
 const App = () => {
   const [openModal, setOpenModal] = useState(false)
-  const [transactions, setTransactions] = useState([])
+  const [operations, setOperations] = useState([])
 
-  const saveTransaction = transaction =>{
-    transaction.id = generateId()
-    setTransactions([...transactions, transaction])
+  const saveOperation = operation =>{
+    operation.id = generateId()
+    setOperations([...operations, operation])
     //setOpenModal(false) production
   }
 
@@ -33,8 +33,8 @@ const App = () => {
         <Navbar />
         <main>
 
-          <TransactionsHistory
-            transactions={transactions}
+          <OperationsHistory
+            operations={operations}
           />
           
         </main>
@@ -50,7 +50,7 @@ const App = () => {
         <Modal
           open={openModal}
           setOpen={setOpenModal}
-          saveTransaction = {saveTransaction}
+          saveOperation = {saveOperation}
         />
       </div>
 

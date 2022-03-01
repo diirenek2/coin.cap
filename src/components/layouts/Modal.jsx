@@ -6,13 +6,13 @@ import { coins } from '../../data/coins'
 import Input from './forms/Input'
 import SelectImage from './forms/SelectImage'
 
-export const Modal = ({open, setOpen, saveTransaction}) => {
+export const Modal = ({open, setOpen, saveOperation}) => {
   const [error, setError] = useState(false)
  
   const [amount, setAmount] = useState(0)
   const [price, setPrice] = useState(0)
 
-  const [transactionType, setTransactionType] = useState({id: 0, name: "Seleccione Tipo Transaccion"})
+  const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Transaccion"})
   const [coin, setCoin] = useState({id: 0, name: "Seleccione Coin"})
 
   const cancelButtonRef = useRef(null)
@@ -27,7 +27,7 @@ export const Modal = ({open, setOpen, saveTransaction}) => {
       return
     }
 
-    saveTransaction({amount: amount, price: price, type: transactionType.name, coin: coin})
+    saveOperation({amount: amount, price: price, type: operationType.name, coin: coin})
   }
 
 
@@ -93,8 +93,8 @@ export const Modal = ({open, setOpen, saveTransaction}) => {
                               {id: 4, name: 'Egreso'},
                             ]}
 
-                            selected = {transactionType}
-                            setSelected = {setTransactionType}
+                            selected = {operationType}
+                            setSelected = {setOperationType}
                           />
                         </div>
                       </div>
