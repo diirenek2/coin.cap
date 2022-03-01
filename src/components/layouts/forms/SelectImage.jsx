@@ -49,7 +49,7 @@ export default function SelectImage(props) {
                   >
                     {({ selected, active }) => (
                       <>
-                        <div className="flex items-center">
+                        <div className="flex items-center ">
                           {element.image &&
                             <img src={element.image} alt="" className="flex-shrink-0 h-5 w-5 rounded-full" />
                           }

@@ -27,7 +27,7 @@ export const Modal = ({open, setOpen, saveTransaction}) => {
       return
     }
 
-    saveTransaction({amount: amount, price: price, type: transactionType.name, coin: coin.name})
+    saveTransaction({amount: amount, price: price, type: transactionType.name, coin: coin})
   }
 
 
