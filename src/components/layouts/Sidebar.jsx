@@ -1,4 +1,5 @@
  import React from 'react'
+ import metamask from '../../images/icons/metamask.svg'
  
  export const Sidebar = () => {
    return (
@@ -27,7 +28,8 @@
             <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 bg-slate-900`}>
               <a href='#' className={`block text-slate-300 hover:text-white truncate transition duration-150`}>
                 <div className="flex items-center">
-                  <img className="shrink-0 h-6 w-6" src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="" />
+                  <img className="shrink-0 h-6 w-6" src={metamask} alt="" />
+
                   <span className="text-sm font-medium ml-3 duration-200">Metamask 1</span>
                 </div>
               </a>
@@ -35,7 +37,7 @@
             <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
               <a href='#' className={`block text-slate-300 hover:text-white truncate transition duration-150`}>
                 <div className="flex items-center">
-                  <img className="shrink-0 h-6 w-6" src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="" />
+                  <img className="shrink-0 h-6 w-6" src={metamask} alt="" />
                   <span className="text-sm font-medium ml-3 duration-200">Metamask 2</span>
                 </div>
               </a>

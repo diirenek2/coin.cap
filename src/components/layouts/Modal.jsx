@@ -12,8 +12,8 @@ export const Modal = ({open, setOpen, saveOperation}) => {
   const [amount, setAmount] = useState(0)
   const [price, setPrice] = useState(0)
 
-  const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Transaccion"})
-  const [coin, setCoin] = useState({id: 0, name: "Seleccione Coin"})
+  const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
+  const [coin, setCoin] = useState(coins[1])
 
   const cancelButtonRef = useRef(null)
 
@@ -101,7 +101,7 @@ export const Modal = ({open, setOpen, saveOperation}) => {
                       <div className='mt-5 mb-3 w-full'>
                         <Input
                           id = {'amount'}
-                          type = {'number'}
+                          type = {'text'}
                           label = {'Cantidad (*)'}
                           value = {amount}
                           onChange = {e => setAmount(Number(e.target.value))}
@@ -110,7 +110,7 @@ export const Modal = ({open, setOpen, saveOperation}) => {
                       <div className='mt-5 mb-3 w-full'>
                         <Input
                           id = {'price'}
-                          type = {'number'}
+                          type = {'text'}
                           label = {'Precio (*)'}
                           value = {price}
                           onChange = {e => setPrice(Number(e.target.value))}

@@ -16,6 +16,7 @@ const App = () => {
 
   const saveOperation = operation =>{
     operation.id = generateId()
+    operation.date = Date.now()
     setOperations([...operations, operation])
     //setOpenModal(false) production
   }
