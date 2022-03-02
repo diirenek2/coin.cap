@@ -13,3 +13,10 @@ export const dateFormat = date => {
   }
   return newDate.toLocaleDateString('es-ES', options)
 }
+
+export const currencyFormat = (currency) =>{
+  return currency.toLocaleString('en-US',{
+    style: 'currency',
+    currency: 'USD'
+  })
+}

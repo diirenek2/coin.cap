@@ -5,12 +5,13 @@ import { coins } from '../../data/coins'
 
 import Input from './forms/Input'
 import SelectImage from './forms/SelectImage'
+import { CurrencyYenIcon } from '@heroicons/react/solid'
 
 export const Modal = ({open, setOpen, saveOperation}) => {
   const [error, setError] = useState(false)
  
-  const [amount, setAmount] = useState(0)
-  const [price, setPrice] = useState(0)
+  const [amount, setAmount] = useState('')
+  const [price, setPrice] = useState('')
 
   const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
   const [coin, setCoin] = useState(coins[1])
@@ -22,7 +23,7 @@ export const Modal = ({open, setOpen, saveOperation}) => {
     e.preventDefault();
 
     //pendiente mejorar
-    if([ amount, price].includes(0)){
+    if([ amount, price].includes('')){
       console.log("fallo la validacion")
       return
     }
@@ -101,19 +102,21 @@ export const Modal = ({open, setOpen, saveOperation}) => {
                       <div className='mt-5 mb-3 w-full'>
                         <Input
                           id = {'amount'}
-                          type = {'text'}
+                          type = {'number'}
                           label = {'Cantidad (*)'}
                           value = {amount}
                           onChange = {e => setAmount(Number(e.target.value))}
+                          step={0.00000001}
                         />
                       </div>
                       <div className='mt-5 mb-3 w-full'>
                         <Input
                           id = {'price'}
-                          type = {'text'}
+                          type = {'number'}
                           label = {'Precio (*)'}
                           value = {price}
                           onChange = {e => setPrice(Number(e.target.value))}
+                          step = {0.01}
                         />
                       </div>
                     </div>
