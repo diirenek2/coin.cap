@@ -13,6 +13,7 @@ import { PlusCircleIcon } from '@heroicons/react/outline'
 const App = () => {
   const [openModal, setOpenModal] = useState(false)
   const [operations, setOperations] = useState([])
+  const [total, setTotal] = useState(0)
 
   const saveOperation = operation =>{
     operation.id = generateId()
@@ -24,7 +25,6 @@ const App = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      
       <Sidebar />
 
       {/* Content area */}
@@ -33,11 +33,13 @@ const App = () => {
         {/*  Site header */}
         <Navbar />
         <main>
+          <Portfolio
+            operations = {operations}
+          />
 
           <OperationsHistory
             operations={operations}
           />
-          
         </main>
         {/*  Fiexed */}
         <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">

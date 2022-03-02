@@ -6,7 +6,7 @@ export const OperationsHistory = ({operations}) => {
       <h2 className="block uppercase text-lg text-slate-400">Historial de Operaciones</h2>
 
       {operations.map( operation => (
-        <Operation 
+        <Operation
           key = {operation.id}
           operation = {operation}
         />

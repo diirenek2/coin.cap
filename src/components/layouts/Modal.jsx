@@ -9,7 +9,7 @@ import { CurrencyYenIcon } from '@heroicons/react/solid'
 
 export const Modal = ({open, setOpen, saveOperation}) => {
   const [error, setError] = useState(false)
- 
+
   const [amount, setAmount] = useState('')
   const [price, setPrice] = useState('')
 
@@ -23,14 +23,17 @@ export const Modal = ({open, setOpen, saveOperation}) => {
     e.preventDefault();
 
     //pendiente mejorar
+    if(operationType.id ==0){
+      console.log('fallo validacion')
+      return
+    }
     if([ amount, price].includes('')){
-      console.log("fallo la validacion")
+      console.log('fallo la validacion')
       return
     }
 
     saveOperation({amount: amount, price: price, type: operationType.name, coin: coin})
   }
-
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -63,7 +66,7 @@ export const Modal = ({open, setOpen, saveOperation}) => {
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <form 
+            <form
               onSubmit={handleSubmit}
               className="inline-block align-bottom text-left overflow-show shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full"
             >
