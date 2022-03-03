@@ -19,7 +19,6 @@ const App = () => {
     operation.id = generateId()
     operation.date = Date.now()
     setOperations([...operations, operation])
-    //setOpenModal(false) production
   }
 
   return (
@@ -43,7 +42,7 @@ const App = () => {
         </main>
         {/*  Fiexed */}
         <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
-          <button className="fixed text-slate-300 hover:text-white bottom-4 right-4 bg-yellow-600 active:bg-yellow-500 font-bold uppercase text-sm px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
+          <button className="fixed text-white bottom-4 right-4 bg-yellow-600 active:bg-yellow-600 hover:bg-yellow-500 font-bold uppercase text-sm px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
             type="button"
             onClick={() => setOpenModal(true)}
           >

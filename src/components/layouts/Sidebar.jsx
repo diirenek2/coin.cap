@@ -9,7 +9,7 @@
     >
       {/* Sidebar header */}
       <div className="flex flex-row justify-center items-center mb-5 pr-3 sm:px-2">
-        <a aria-current="page" className="active font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow-500" href="/">
+        <a aria-current="page" className="font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow-500" href="/">
           <span >Coin</span>
           <span className="text-slate-300">-cap</span>
         </a>
@@ -43,6 +43,11 @@
               </a>
             </li>
           </ul>
+        </div>
+      </div>
+      <div className=" border-slate-300 border-t absolute inset-x-0 bottom-0 items-center h-12 cursor-pointer flex text-slate-300 hover:text-white truncate transition duration-500">
+        <div className="text-center w-full uppercase font-bold"> 
+          añadir
         </div>
       </div>
     </div>

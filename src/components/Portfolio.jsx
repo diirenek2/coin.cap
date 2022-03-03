@@ -12,7 +12,14 @@ export const Portfolio = ({operations}) => {
 
   return (
     <div className="m-4 p-4">
-      <div className='text-slate-300 bg-slate-800 p-4 m-1 rounded flex'>Total: {currencyFormat(total)}</div>
+      <div className='text-slate-300 bg-slate-800 p-4 m-1 rounded flex'>
+        <span className="w-1/2">
+          grafico
+        </span>
+        <span className="w-1/2 text-center">
+          Total: {currencyFormat(total)}
+        </span>
+      </div>
     </div>
   )
 }

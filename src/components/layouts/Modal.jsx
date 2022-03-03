@@ -21,18 +21,22 @@ export const Modal = ({open, setOpen, saveOperation}) => {
   const handleSubmit = e =>{
     console.log("submit")
     e.preventDefault();
-
     //pendiente mejorar
-    if(operationType.id ==0){
+    if(operationType.id == 0){
       console.log('fallo validacion')
       return
     }
-    if([ amount, price].includes('')){
+    if([ amount, price ].includes('')){
       console.log('fallo la validacion')
       return
     }
-
     saveOperation({amount: amount, price: price, type: operationType.name, coin: coin})
+
+    setAmount('')
+    setPrice('')
+    setOperationType({id: 0, name: "Seleccione Tipo Operacion"})
+    setCoin(coins[1])
+    setOpen(false)
   }
 
   return (
@@ -129,7 +133,7 @@ export const Modal = ({open, setOpen, saveOperation}) => {
               <div className="bg-slate-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b">
                 <button
                   type="submit"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-slate-300 hover:text-white hover:bg-yellow-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-600 text-base font-medium text-white hover:bg-yellow-500 active:bg-yellow-600 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   Confirmar
                 </button>
