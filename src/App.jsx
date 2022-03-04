@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { Sidebar } from './components/layouts/Sidebar';
 import { Navbar } from './components/layouts/Navbar'
 import { Portfolio } from './components/Portfolio'
 import { Modal } from './components/layouts/Modal'
-import { OperationsHistory } from './components/OperationsHistory'
+import { OperationsList } from './components/OperationsList'
 
 
 import { generateId } from './helpers'
@@ -13,6 +13,8 @@ import { PlusCircleIcon } from '@heroicons/react/outline'
 const App = () => {
   const [openModal, setOpenModal] = useState(false)
   const [operations, setOperations] = useState([])
+  const [operationEdit, setOperationEdit] = useState({})
+
   const [total, setTotal] = useState(0)
 
   const saveOperation = operation =>{
@@ -20,6 +22,13 @@ const App = () => {
     operation.date = Date.now()
     setOperations([...operations, operation])
   }
+
+  useEffect (()=>{
+    if( Object.keys(operationEdit).length > 0){
+      setOpenModal(true)
+    }
+
+  }, [operationEdit])
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -36,8 +45,9 @@ const App = () => {
             operations = {operations}
           />
 
-          <OperationsHistory
+          <OperationsList
             operations={operations}
+            setOperationEdit = {setOperationEdit}
           />
         </main>
         {/*  Fiexed */}
@@ -53,6 +63,7 @@ const App = () => {
           open={openModal}
           setOpen={setOpenModal}
           saveOperation = {saveOperation}
+          operationEdit = {operationEdit}
         />
       </div>
 

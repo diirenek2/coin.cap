@@ -1,6 +1,6 @@
 import React from "react"
 import { Operation } from "./Operation"
-export const OperationsHistory = ({operations}) => {
+export const OperationsList = ({operations, setOperationEdit}) => {
   return (
     <div className="m-4 p-4">
       <h2 className="block uppercase text-lg text-slate-400">Historial de Operaciones</h2>
@@ -9,6 +9,7 @@ export const OperationsHistory = ({operations}) => {
         <Operation
           key = {operation.id}
           operation = {operation}
+          setOperationEdit = {setOperationEdit}
         />
       ))}
     </div>

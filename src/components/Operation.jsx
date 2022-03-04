@@ -9,12 +9,12 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css'
 
-export const Operation = ({operation}) => {
+export const Operation = ({operation, setOperationEdit}) => {
   const {coin, price, amount, type, id, date} = operation
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.info('Editar')}>
+      <SwipeAction onClick={() => setOperationEdit(operation)}>
       <div className="flex items-center rounded">
         <div className="text-center text-yellow-500 w-full uppercase font-bold"> 
           editar

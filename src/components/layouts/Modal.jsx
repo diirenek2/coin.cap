@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from 'react'
+import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 import { coins } from '../../data/coins'
@@ -7,7 +7,7 @@ import Input from './forms/Input'
 import SelectImage from './forms/SelectImage'
 import { CurrencyYenIcon } from '@heroicons/react/solid'
 
-export const Modal = ({open, setOpen, saveOperation}) => {
+export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
   const [error, setError] = useState(false)
 
   const [amount, setAmount] = useState('')
@@ -17,6 +17,15 @@ export const Modal = ({open, setOpen, saveOperation}) => {
   const [coin, setCoin] = useState(coins[1])
 
   const cancelButtonRef = useRef(null)
+
+  useEffect(() =>{
+    if( Object.keys(operationEdit).length > 0){
+      setAmount(operationEdit.amount)
+      setPrice(operationEdit.price)
+      //setOperationType(operationEdit.type)
+      //setCoin(operationEdit.coin)
+    }
+  }, []) 
 
   const handleSubmit = e =>{
     console.log("submit")
@@ -30,7 +39,7 @@ export const Modal = ({open, setOpen, saveOperation}) => {
       console.log('fallo la validacion')
       return
     }
-    saveOperation({amount: amount, price: price, type: operationType.name, coin: coin})
+    saveOperation({amount: amount, price: price, type: operationType, coin: coin})
 
     setAmount('')
     setPrice('')
