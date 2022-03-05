@@ -19,14 +19,19 @@ const App = () => {
   const saveOperation = operation =>{
     if (operation.id){
       //edita la operacion existente
-      const operationUpdated = operations.map( operationState => operationState.id === operation.id ? operation: operationState)
-      setOperations(operationUpdated)
+      const updatedOperation = operations.map( operationState => operationState.id === operation.id ? operation: operationState)
+      setOperations(updatedOperation)
     }else{
       //guarda nueva operacion
       operation.id = generateId()
       operation.date = Date.now()
       setOperations([...operations, operation])
     }
+  }
+  const deleteOperation = id =>{
+    const updatedOperations = operations.filter(operation => operation.id !== id)
+
+    setOperations(updatedOperations)
   }
 
   return (
@@ -47,6 +52,7 @@ const App = () => {
           <OperationsList
             operations={operations}
             setOperationEdit = {setOperationEdit}
+            deleteOperation = {deleteOperation}
           />
         </main>
         {/*  Fiexed */}

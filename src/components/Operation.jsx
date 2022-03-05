@@ -9,7 +9,7 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css'
 
-export const Operation = ({operation, setOperationEdit}) => {
+export const Operation = ({operation, setOperationEdit, deleteOperation}) => {
   const {coin, price, amount, type, id, date} = operation
 
   const leadingActions = () => (
@@ -28,7 +28,7 @@ export const Operation = ({operation, setOperationEdit}) => {
     <TrailingActions>
       <SwipeAction
         destructive={true}
-        onClick={() => console.info('Eliminar...')}
+        onClick={() => deleteOperation(id)}
       >
         <div className="flex items-center rounded">
           <div className="text-center text-red-500 w-full uppercase font-bold"> 
