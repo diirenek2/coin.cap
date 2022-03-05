@@ -53,7 +53,7 @@ export const Operation = ({operation, setOperationEdit}) => {
           </span>
           
           <span className="font-medium ml-3 w-1/3 text-slate-400">
-            <p className='uppercase text-sm'>{type}</p>
+            <p className='uppercase text-sm'>{type.name}</p>
             <p className='text-xs'>{dateFormat(date)}</p>
           </span>
           <span className="font-medium ml-3 w-full text-slate-400">
