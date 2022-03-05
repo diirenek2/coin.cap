@@ -10,6 +10,8 @@ import { CurrencyYenIcon } from '@heroicons/react/solid'
 export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
   const [error, setError] = useState(false)
 
+  const [id, setId] = useState('')
+  const [date, setDate] = useState('')
   const [amount, setAmount] = useState('')
   const [price, setPrice] = useState('')
 
@@ -25,6 +27,8 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
       setPrice(operationEdit.price)
       setOperationType(operationEdit.type)
       setCoin(operationEdit.coin)
+      setId(operationEdit.id)
+      setDate(operationEdit.date)
 
       setOpen(true)
     }else{
@@ -45,8 +49,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
       return
     }
     
-    saveOperation({amount: amount, price: price, type: operationType, coin: coin})
-
+    saveOperation({amount: amount, price: price, type: operationType, coin: coin, id: id, date: date})
     cleanForm()
 
     setOpen(false)
@@ -98,7 +101,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                     <Dialog.Title as="h3" className="uppercase text-lg leading-6 font-medium text-slate-300">
-                      Nueva Transaccion
+                      {operationEdit.amount ? "Editar Operacion": "Nueva Operacion"}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-MD text-slate-400">
@@ -153,13 +156,13 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
               <div className="bg-slate-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b">
                 <button
                   type="submit"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-500 text-base font-medium text-white hover:bg-yellow-500 active:bg-yellow-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="uppercase w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-500 text-base font-medium text-white hover:bg-yellow-500 active:bg-yellow-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
-                  Confirmar
+                  {operationEdit.amount ? "Editar": "Añadir"}
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-slate-500 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="uppercase mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-slate-500 text-base font-medium text-slate-300 hover:text-white hover:bg-slate-400 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   onClick={() => setOpen(false)}
                   ref={cancelButtonRef}
                 >

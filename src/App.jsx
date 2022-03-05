@@ -6,7 +6,6 @@ import { Portfolio } from './components/Portfolio'
 import { Modal } from './components/layouts/Modal'
 import { OperationsList } from './components/OperationsList'
 
-
 import { generateId } from './helpers'
 import { PlusCircleIcon } from '@heroicons/react/outline'
 
@@ -18,10 +17,16 @@ const App = () => {
   const [total, setTotal] = useState(0)
 
   const saveOperation = operation =>{
-
-    operation.id = generateId()
-    operation.date = Date.now()
-    setOperations([...operations, operation])
+    if (operation.id){
+      //edita la operacion existente
+      const operationUpdated = operations.map( operationState => operationState.id === operation.id ? operation: operationState)
+      setOperations(operationUpdated)
+    }else{
+      //guarda nueva operacion
+      operation.id = generateId()
+      operation.date = Date.now()
+      setOperations([...operations, operation])
+    }
   }
 
   return (
