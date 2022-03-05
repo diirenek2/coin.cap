@@ -58,6 +58,8 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
   const cleanForm  = () => {
     setAmount('')
     setPrice('')
+    setId('')
+    setDate('')
     setOperationType({id: 0, name: "Seleccione Tipo Operacion"})
     setCoin(coins[1])
   }

@@ -12,12 +12,13 @@ import { PlusCircleIcon } from '@heroicons/react/outline'
 const App = () => {
   const [openModal, setOpenModal] = useState(false)
   const [operations, setOperations] = useState([])
-  const [operationEdit, setOperationEdit] = useState({})
+  const [operationEdit, setEditOperation] = useState({})
 
   const [total, setTotal] = useState(0)
 
   const saveOperation = operation =>{
     if (operation.id){
+      console.log("editando")
       //edita la operacion existente
       const updatedOperation = operations.map( operationState => operationState.id === operation.id ? operation: operationState)
       setOperations(updatedOperation)
@@ -33,6 +34,12 @@ const App = () => {
 
     setOperations(updatedOperations)
   }
+
+  useEffect(()=>{
+    if(openModal == false){
+      setEditOperation({})
+    }
+  },[openModal])
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -51,7 +58,7 @@ const App = () => {
 
           <OperationsList
             operations={operations}
-            setOperationEdit = {setOperationEdit}
+            setEditOperation = {setEditOperation}
             deleteOperation = {deleteOperation}
           />
         </main>
@@ -59,7 +66,7 @@ const App = () => {
         <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
           <button className="fixed text-white bottom-4 right-4 bg-yellow-500 active:bg-yellow-500 hover:bg-yellow-400 font-bold uppercase text-sm px-2 py-2 rounded-full shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
             type="button"
-            onClick={() => {setOpenModal(true), setOperationEdit({})}}
+            onClick={() => setOpenModal(true)}
           >
             <PlusCircleIcon className="h-9 w-9" aria-hidden="true" />
           </button>
