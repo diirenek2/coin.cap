@@ -36,9 +36,7 @@ const App = () => {
   }
 
   useEffect(()=>{
-    if(openModal == false){
-      setEditOperation({})
-    }
+    openModal == false, setEditOperation({})
   },[openModal])
 
   return (
