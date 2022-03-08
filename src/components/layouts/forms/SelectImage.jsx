@@ -63,7 +63,7 @@ export default function SelectImage(props) {
                         {selected ? (
                           <span
                             className={classNames(
-                              active ? 'text-white' : 'text-yellow-500',
+                              active ? 'text-white' : 'text-amber-500',
                               'absolute inset-y-0 right-0 flex items-center pr-4'
                             )}
                           >

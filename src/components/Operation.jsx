@@ -16,7 +16,7 @@ export const Operation = ({operation, setEditOperation, deleteOperation}) => {
     <LeadingActions>
       <SwipeAction onClick={() => setEditOperation(operation)}>
       <div className="flex items-center rounded">
-        <div className="text-center text-yellow-500 w-full uppercase font-bold"> 
+        <div className="text-center text-amber-500 w-full uppercase font-bold"> 
           editar
         </div>
       </div>

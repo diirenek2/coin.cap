@@ -158,7 +158,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
               <div className="bg-slate-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b">
                 <button
                   type="submit"
-                  className="uppercase w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-yellow-500 text-base font-medium text-white hover:bg-yellow-500 active:bg-yellow-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className="uppercase w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-amber-500 text-base font-medium text-white hover:bg-amber-500 active:bg-amber-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   {operationEdit.amount ? "Editar": "Añadir"}
                 </button>

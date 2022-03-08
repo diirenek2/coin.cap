@@ -9,7 +9,7 @@
     >
       {/* Sidebar header */}
       <div className="flex flex-row justify-center items-center mb-5 pr-3 sm:px-2">
-        <a aria-current="page" className="font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-yellow-500" href="/">
+        <a aria-current="page" className="font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-amber-500" href="/">
           <span >Coin</span>
           <span className="text-slate-300">-cap</span>
         </a>
