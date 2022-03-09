@@ -12,8 +12,8 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
 
   const [id, setId] = useState('')
   const [date, setDate] = useState('')
-  const [amount, setAmount] = useState(1)
-  const [price, setPrice] = useState(100)
+  const [amount, setAmount] = useState('')
+  const [price, setPrice] = useState('')
 
   const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
   const [coin, setCoin] = useState(coins[2])
@@ -31,8 +31,9 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
       setDate(operationEdit.date)
 
       setOpen(true)
+
     }else{
-      //cleanForm()
+      cleanForm()
     }
   }, [operationEdit]) 
 
@@ -50,7 +51,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
     }
     
     saveOperation({amount: amount, price: price, type: operationType, coin: coin, id: id, date: date})
-    //cleanForm()
+    cleanForm()
 
     setOpen(false)
   }

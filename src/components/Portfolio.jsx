@@ -6,7 +6,7 @@ import { PieChart } from 'react-minimal-pie-chart'
 
 
 export const Portfolio = ({operations}) => {
-  const [totalValueUsd, setTotalValueUsd ] = useState(0)
+  const [totalHoldingUsd, setTotalHoldingUsd ] = useState(0)
   const [chartData, setChartData] = useState([])
   
   const segmentsShiftWidth = 0.5;
@@ -18,7 +18,6 @@ export const Portfolio = ({operations}) => {
   };
 
   useEffect(() => {
-
     //agrupa las operaciones segun las coins
     const operationsGroupByCoin = operations.reduce((accumulator, currentValue) => {
       (accumulator[currentValue.coin.name] = accumulator[currentValue.coin.name] || []).push(currentValue)
@@ -26,7 +25,7 @@ export const Portfolio = ({operations}) => {
     }, {})
 
     let holding = []
-    let totalValueUsd = 0
+    let totalUsd = 0
     
     Object.getOwnPropertyNames(operationsGroupByCoin).forEach(propertyName => {
       let valueUsd = 0
@@ -40,14 +39,14 @@ export const Portfolio = ({operations}) => {
       })
 
       if(valueUsd>0){
-        totalValueUsd += valueUsd
+        totalUsd += valueUsd
         holding.push({'coinName': propertyName,'valueUsd': valueUsd})
       }
     })
 
     setChartData(holding.map(element=>{
       //formula porcentaje (a es x% de b)
-      const percentage = (100/totalValueUsd)*element.valueUsd
+      const percentage = (100/totalUsd)*element.valueUsd
       return { 
         id: generateId(),
         title: element.coinName, 
@@ -56,9 +55,7 @@ export const Portfolio = ({operations}) => {
         color: '#d97706' //amber-600
       }
     }))
-
-    setTotalValueUsd(totalValueUsd)
-    
+    setTotalHoldingUsd(totalUsd)
   }, [operations])
 
   return (
@@ -66,7 +63,7 @@ export const Portfolio = ({operations}) => {
       <div className='text-slate-300 bg-slate-800 p-4 m-1 rounded'>
         <div className="w-full mb-4 flex">
           <PieChart
-            className="w-1/4"
+            className=" w-1/6"
             data={chartData}
             animate = {true}
             radius={PieChart.defaultProps.radius - segmentsShiftWidth}
@@ -77,7 +74,7 @@ export const Portfolio = ({operations}) => {
             }}
           />
           <h3 className="w-3/4 text-center text-3xl">
-            {currencyFormat(1000)}
+            {currencyFormat(totalHoldingUsd)}
           </h3>
         </div>
         <div className="">
