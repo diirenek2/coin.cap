@@ -11,16 +11,21 @@ import { PlusCircleIcon } from '@heroicons/react/outline'
 
 const App = () => {
   const [openModal, setOpenModal] = useState(false)
-  const [operations, setOperations] = useState([])
+  const [operations, setOperations] = useState(
+    JSON.parse(localStorage.getItem('operations')) ?? [
+      {"amount":0.0015,"price":41300,"type":{"id":1,"name":"Compra"},"coin":{"id":2,"name":"BTC","image":"https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg"},"id":"wy4i70f7t5l0ugea1h","date":1647488971349},
+      {"amount":0.03,"price":2700,"type":{"id":1,"name":"Compra"},"coin":{"id":3,"name":"ETH","image":"https://s3-symbol-logo.tradingview.com/crypto/XTVCETH.svg"},"id":"py6kfx6kxzjl0uhdvaf","date":1647490631847},
+      {"amount":0.0003,"price":44300,"type":{"id":2,"name":"Venta"},"coin":{"id":2,"name":"BTC","image":"https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg"},"id":"02a9o022w1k2l0uhfevy","date":1647490703902}
+    ]
+  )
+  
   const [operationEdit, setEditOperation] = useState({})
-
-  const [total, setTotal] = useState(0)
 
   const saveOperation = operation =>{
     if (operation.id){
       console.log("editando")
       //edita la operacion existente
-      const updatedOperation = operations.map( operationState => operationState.id === operation.id ? operation: operationState)
+      const updatedOperation = operations.map( operationState => operationState.id === operation.id ? operation : operationState)
       setOperations(updatedOperation)
     }else{
       //guarda nueva operacion
@@ -35,6 +40,10 @@ const App = () => {
     setOperations(updatedOperations)
   }
 
+  useEffect(()=>{
+    localStorage.setItem('operations', JSON.stringify( operations ))
+  },[operations])
+  
   useEffect(()=>{
     if(!openModal){
       setEditOperation({})
