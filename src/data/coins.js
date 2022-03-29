@@ -1,6 +1,6 @@
-const coins = [
+const coinsJson = [
   {
-    id: 1,
+    id: 8,
     name: 'USDT',
     image: 'https://s3-symbol-logo.tradingview.com/crypto/XTVCUSDT.svg'
   },
@@ -37,5 +37,5 @@ const coins = [
 ]
 
 export {
-  coins
+  coinsJson
 }

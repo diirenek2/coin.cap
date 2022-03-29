@@ -5,6 +5,7 @@ import { Navbar } from './components/layouts/Navbar'
 import { Portfolio } from './components/Portfolio'
 import { Modal } from './components/layouts/Modal'
 import { OperationsList } from './components/OperationsList'
+import { Filters } from './components/Filters'
 
 import { generateId } from './helpers'
 import { PlusCircleIcon } from '@heroicons/react/outline'
@@ -20,6 +21,8 @@ const App = () => {
   )
   
   const [operationEdit, setEditOperation] = useState({})
+
+  const [filter , setFilter ] = useState ('')
 
   const saveOperation = operation =>{
     if (operation.id){
@@ -65,10 +68,15 @@ const App = () => {
             operations = {operations}
           />
 
+          <Filters 
+            setFilter = {setFilter}
+          />
+
           <OperationsList
             operations={operations}
             setEditOperation = {setEditOperation}
             deleteOperation = {deleteOperation}
+            filter = {filter}
           />
         </main>
         {/*  Fiexed */}

@@ -1,7 +1,7 @@
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { coins } from '../../data/coins'
+import { coinsJson } from '../../data/coins'
 
 import Input from './forms/Input'
 import SelectImage from './forms/SelectImage'
@@ -16,7 +16,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
   const [price, setPrice] = useState('')
 
   const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
-  const [coin, setCoin] = useState(coins[2])
+  const [coin, setCoin] = useState(coinsJson[2])
 
   const cancelButtonRef = useRef(null)
 
@@ -62,7 +62,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
     setId('')
     setDate('')
     setOperationType({id: 0, name: "Seleccione Tipo Operacion"})
-    setCoin(coins[1])
+    setCoin(coinsJson[1])
   }
 
   return (
@@ -113,7 +113,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
                       <div className='flex items-center justify-between mt-5 mb-3'>
                         <div className='w-1/2 pr-1'>
                         <SelectImage
-                            options = {coins}
+                            options = {coinsJson}
                             selected = {coin}
                             setSelected = {setCoin}
                           />
