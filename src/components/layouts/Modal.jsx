@@ -24,13 +24,12 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
   useEffect(()=>{
     const cryptoCompareMultipleSymbolsPriceAPI = ( async ()=>{
       const symbols = coinsJson.map( symbol =>{ return symbol.name })
-      const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols},ETH&tsyms=USD`
-      
+      const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD`
+
       const response = await fetch (url)
       const result = await response.json()
 
       setCryptoCompareMultipleSymbolsPrice(result)
-      
       console.log("cryptoCompare api lista")
     })
 
@@ -40,7 +39,6 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
   useEffect(() =>{
     if( Object.keys(operationEdit).length > 0){
       //editando desde el modal
-      
       setAmount(operationEdit.amount)
       setPrice(operationEdit.price)
       setOperationType(operationEdit.type)
@@ -77,7 +75,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
     setAmount('')
     setId('')
     setDate('')
-    setOperationType({id: 0, name: "Seleccione Tipo Operacion"})
+    setOperationType({id: 1, name: 'Compra'})
     setCoin(coinsJson[1])
 
     setEditOperation({})
@@ -95,7 +93,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
       console.log('fallo la validacion')
       return
     }
-    
+
     saveOperation({amount: amount, price: price, type: operationType, coin: coin, id: id, date: date})
     setOpen(false)
   }

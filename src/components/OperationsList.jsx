@@ -7,12 +7,11 @@ export const OperationsList = ({operations, setEditOperation, deleteOperation, f
 
   useEffect(()=>{
     if(filter != 'Todos'){
-
       // con filtros
-      setFilteredOperations(operations.filter (operation => operation.coin.name === filter))
+      setFilteredOperations(operations.filter (operation => operation.coin.name === filter).sort(function(a,b){return b.date - a.date;}))
     }else{
       // sin filtros
-      setFilteredOperations(operations)
+      setFilteredOperations(operations.sort(function(a,b){return b.date - a.date;}))
     }
   },[filter, operations])
 
