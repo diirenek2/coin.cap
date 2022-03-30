@@ -7,7 +7,7 @@ import Input from './forms/Input'
 import SelectImage from './forms/SelectImage'
 import { CurrencyYenIcon } from '@heroicons/react/solid'
 
-export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
+export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOperation}) => {
   const [error, setError] = useState(false)
 
   const [id, setId] = useState('')
@@ -16,12 +16,30 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
   const [price, setPrice] = useState('')
 
   const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
-  const [coin, setCoin] = useState(coinsJson[2])
+  const [coin, setCoin] = useState({})
+  const [cryptoCompareMultipleSymbolsPrice, setCryptoCompareMultipleSymbolsPrice] = useState({})
 
   const cancelButtonRef = useRef(null)
 
+  useEffect(()=>{
+    const cryptoCompareMultipleSymbolsPriceAPI = ( async ()=>{
+      const symbols = coinsJson.map( symbol =>{ return symbol.name })
+      const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols},ETH&tsyms=USD`
+      
+      const response = await fetch (url)
+      const result = await response.json()
+
+      setCryptoCompareMultipleSymbolsPrice(result)
+      
+      console.log("cryptoCompare api lista")
+    })
+
+    cryptoCompareMultipleSymbolsPriceAPI()
+  }, [])
+
   useEffect(() =>{
     if( Object.keys(operationEdit).length > 0){
+      //editando desde el modal
       
       setAmount(operationEdit.amount)
       setPrice(operationEdit.price)
@@ -32,10 +50,38 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
 
       setOpen(true)
 
-    }else{
-      cleanForm()
     }
-  }, [operationEdit]) 
+  }, [operationEdit])
+
+  useEffect(()=>{
+    if(cryptoCompareMultipleSymbolsPrice[coin.name]){
+      if( Object.keys(operationEdit).length == 0){
+        console.log("select")
+        setPrice(cryptoCompareMultipleSymbolsPrice[coin.name].USD)
+      }
+    }
+  }, [coin])
+
+  useEffect(()=>{
+    if(!open){ 
+      setTimeout(cleanForm, 400);
+    }else{
+      if( Object.keys(operationEdit).length == 0){
+        console.log("modificando el precio")
+        setPrice(cryptoCompareMultipleSymbolsPrice[coin.name].USD)
+      }
+    }
+  },[open])
+
+  const cleanForm = (()=>{
+    setAmount('')
+    setId('')
+    setDate('')
+    setOperationType({id: 0, name: "Seleccione Tipo Operacion"})
+    setCoin(coinsJson[1])
+
+    setEditOperation({})
+  })
 
   const handleSubmit = e =>{
     console.log("submit")
@@ -51,18 +97,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
     }
     
     saveOperation({amount: amount, price: price, type: operationType, coin: coin, id: id, date: date})
-    cleanForm()
-
     setOpen(false)
-  }
-
-  const cleanForm  = () => {
-    setAmount('')
-    setPrice('')
-    setId('')
-    setDate('')
-    setOperationType({id: 0, name: "Seleccione Tipo Operacion"})
-    setCoin(coinsJson[1])
   }
 
   return (
@@ -104,7 +139,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
                 <div className="sm:flex sm:items-start">
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                     <Dialog.Title as="h3" className="uppercase text-lg leading-6 font-medium text-slate-300">
-                      {operationEdit.amount ? "Editar Operacion": "Nueva Operacion"}
+                      {operationEdit.id ? "Editar Operacion": "Nueva Operacion"}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-MD text-slate-400">
@@ -161,7 +196,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit}) => {
                   type="submit"
                   className="uppercase w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-amber-500 text-base font-medium text-white hover:bg-amber-500 active:bg-amber-500 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
-                  {operationEdit.amount ? "Editar": "Añadir"}
+                  {operationEdit.id ? "Editar": "Añadir"}
                 </button>
                 <button
                   type="button"

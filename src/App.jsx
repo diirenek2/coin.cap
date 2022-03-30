@@ -46,12 +46,6 @@ const App = () => {
   useEffect(()=>{
     localStorage.setItem('operations', JSON.stringify( operations ))
   },[operations])
-  
-  useEffect(()=>{
-    if(!openModal){
-      setEditOperation({})
-    }
-  },[openModal])
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -93,6 +87,7 @@ const App = () => {
           setOpen={setOpenModal}
           saveOperation = {saveOperation}
           operationEdit = {operationEdit}
+          setEditOperation = {setEditOperation}
         />
       </div>
 

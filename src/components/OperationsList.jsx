@@ -7,13 +7,14 @@ export const OperationsList = ({operations, setEditOperation, deleteOperation, f
 
   useEffect(()=>{
     if(filter != 'Todos'){
+
       // con filtros
       setFilteredOperations(operations.filter (operation => operation.coin.name === filter))
     }else{
       // sin filtros
       setFilteredOperations(operations)
     }
-  },[filter])
+  },[filter, operations])
 
   return (
     <div className="m-4 p-4">
