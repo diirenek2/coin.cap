@@ -8,7 +8,6 @@ import { PieChart } from 'react-minimal-pie-chart'
 export const Portfolio = ({operations}) => {
   const [totalHoldingUsd, setTotalHoldingUsd ] = useState(0)
   const [chartData, setChartData] = useState([])
-  
   const segmentsShiftWidth = 0.5;
 
   const customLabelStyle = {
@@ -26,7 +25,6 @@ export const Portfolio = ({operations}) => {
 
     let holding = []
     let totalUsd = 0
-    
     Object.getOwnPropertyNames(operationsGroupByCoin).forEach(propertyName => {
       let valueUsd = 0
 
@@ -47,10 +45,10 @@ export const Portfolio = ({operations}) => {
     setChartData(holding.map(element=>{
       //formula porcentaje (a es x% de b)
       const percentage = (100/totalUsd)*element.valueUsd
-      return { 
+      return {
         id: generateId(),
-        title: element.coinName, 
-        value: Number(percentage.toFixed(2)), 
+        title: element.coinName,
+        value: Number(percentage.toFixed(2)),
         usd: element.valueUsd,
         color: '#d97706' //amber-600
       }
@@ -73,13 +71,14 @@ export const Portfolio = ({operations}) => {
               ...customLabelStyle,
             }}
           />
-          <h3 className="w-3/4 text-center text-3xl">
+          <h3 className="w-full text-center text-3xl text-amber-500 ">
+
             {currencyFormat(totalHoldingUsd)}
           </h3>
         </div>
         <div className="">
           {chartData.map( data => (
-            <span 
+            <span
               key = {data.id}
               className="pr-4">
                 <span className="border-amber-600 border-l border-b p-1">% { data.value } </span>
@@ -87,7 +86,6 @@ export const Portfolio = ({operations}) => {
                 <span>{ currencyFormat(data.usd) }</span>
             </span>
           ))}
-          
         </div>
       </div>
     </div>

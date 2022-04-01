@@ -19,7 +19,6 @@ const App = () => {
       {"amount":0.0003,"price":44300,"type":{"id":2,"name":"Venta"},"coin":{"id":2,"name":"BTC","image":"https://s3-symbol-logo.tradingview.com/crypto/XTVCBTC.svg"},"id":"02a9o022w1k2l0uhfevy","date":1647490703902}
     ]
   )
-  
   const [operationEdit, setEditOperation] = useState({})
 
   const [filter , setFilter ] = useState ('')
@@ -62,7 +61,7 @@ const App = () => {
             operations = {operations}
           />
 
-          <Filters 
+          <Filters
             setFilter = {setFilter}
           />
 
