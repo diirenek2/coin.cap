@@ -17,25 +17,19 @@ export const Navbar = () => {
               <li className="nav-item text-slate-300 hover:text-white">
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
-                  href="#pablo"
+                  href="https://github.com/diirenek2/coin.cap"
+                  target="_blank"
                 >
-                  <i className="fab fa-facebook-square text-lg leading-lg"></i><span className="ml-2">Share</span>
+                  <i className="fab fa-github text-lg leading-lg"></i><span className="ml-2">Github</span>
                 </a>
               </li>
               <li className="nav-item text-slate-300 hover:text-white">
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
-                  href="#pablo"
+                  href="https://www.linkedin.com/in/daniel-monte-b86614198/"
+                  target="_blank"
                 >
-                  <i className="fab fa-twitter text-lg leading-lg"></i><span className="ml-2">Tweet</span>
-                </a>
-              </li>
-              <li className="nav-item text-slate-300 hover:text-white">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
-                  href="#pablo"
-                >
-                  <i className="fab fa-pinterest text-lg leading-lg "></i><span className="ml-2">Pin</span>
+                  <i className="fab fa-linkedin text-lg leading-lg"></i><span className="ml-2">Linkedin</span>
                 </a>
               </li>
             </ul>
