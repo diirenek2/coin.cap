@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react"
 import { currencyFormat, generateId } from '../helpers'
 
-
 import { PieChart } from 'react-minimal-pie-chart'
 
-
 export const Portfolio = ({operations}) => {
-  const [totalHoldingUsd, setTotalHoldingUsd ] = useState(0)
+  const [totalHoldingInvested, setTotalHoldingInvested ] = useState(0)
   const [chartData, setChartData] = useState([])
   const segmentsShiftWidth = 0.5;
 
@@ -24,36 +22,40 @@ export const Portfolio = ({operations}) => {
     }, {})
 
     let holding = []
-    let totalUsd = 0
+    let totalInvested = 0
+    let coinAmount = 0
     Object.getOwnPropertyNames(operationsGroupByCoin).forEach(propertyName => {
-      let valueUsd = 0
+      let invested = 0
 
       operationsGroupByCoin[propertyName].forEach(operation => {
         if(operation.type.name === "Compra"){
-          valueUsd += (operation.price * operation.amount)
+          invested += (operation.price * operation.amount)
+          coinAmount += operation.amount
         }else if(operation.type.name === "Venta"){
-          valueUsd -= (operation.price * operation.amount)
+          invested -= (operation.price * operation.amount)
+          coinAmount -= operation.amount
         }
       })
 
-      if(valueUsd>0){
-        totalUsd += valueUsd
-        holding.push({'coinName': propertyName,'valueUsd': valueUsd})
+      if(invested > 0){
+        totalInvested += invested
+        holding.push({'coinName': propertyName,'invested': invested, 'coinAmount':coinAmount})
       }
     })
 
     setChartData(holding.map(element=>{
       //formula porcentaje (a es x% de b)
-      const percentage = (100/totalUsd)*element.valueUsd
+      const percentage = (100/totalInvested)*element.invested
       return {
         id: generateId(),
         title: element.coinName,
         value: Number(percentage.toFixed(2)),
-        usd: element.valueUsd,
+        usd: element.invested,
         color: '#d97706' //amber-600
       }
     }))
-    setTotalHoldingUsd(totalUsd)
+
+    setTotalHoldingInvested(totalInvested)
   }, [operations])
 
   return (
@@ -71,10 +73,15 @@ export const Portfolio = ({operations}) => {
               ...customLabelStyle,
             }}
           />
-          <h3 className="w-full text-center text-3xl text-amber-500 ">
+          <div className="w-full text-amber-500">
+            <h3 className="text-center text-3xl">
+              Valor Invertido: {currencyFormat(totalHoldingInvested)}
+            </h3>
+            <h3 className="text-center text-3xl">
+              Valor Actual: {currencyFormat(totalHoldingInvested)}
+            </h3>
+          </div>
 
-            {currencyFormat(totalHoldingUsd)}
-          </h3>
         </div>
         <div className="">
           {chartData.map( data => (

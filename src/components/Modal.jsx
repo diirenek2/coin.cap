@@ -1,11 +1,12 @@
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { coinsJson } from '../../data/coins'
+import { coinsJson } from '../data/coins'
 
-import Input from './forms/Input'
-import SelectImage from './forms/SelectImage'
-import { CurrencyYenIcon } from '@heroicons/react/solid'
+import Input from './layouts/forms/Input'
+import SelectImage from './layouts/forms/SelectImage'
+
+import useCryptocompareAPI from '../hooks/useCryptocompareAPI'
 
 export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOperation}) => {
   const [error, setError] = useState(false)
@@ -21,8 +22,10 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
 
   const cancelButtonRef = useRef(null)
 
+  const [ multipleSymbolsPriceAPI ] = useCryptocompareAPI()
+
   useEffect(()=>{
-    const cryptoCompareMultipleSymbolsPriceAPI = ( async ()=>{
+    /*const cryptoCompareMultipleSymbolsPriceAPI = ( async ()=>{
       const symbols = coinsJson.map( symbol =>{ return symbol.name })
       const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD`
 
@@ -30,10 +33,16 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
       const result = await response.json()
 
       setCryptoCompareMultipleSymbolsPrice(result)
-      console.log("cryptoCompare api lista")
+      //console.log("cryptoCompare api lista")
     })
 
-    cryptoCompareMultipleSymbolsPriceAPI()
+    cryptoCompareMultipleSymbolsPriceAPI()*/
+
+    //setCryptoCompareMultipleSymbolsPrice(multipleSymbolsPriceAPI)
+
+    console.log(multipleSymbolsPriceAPI)
+
+
   }, [])
 
   useEffect(() =>{
@@ -61,7 +70,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
   }, [coin])
 
   useEffect(()=>{
-    if(!open){ 
+    if(!open){
       setTimeout(cleanForm, 400);
     }else{
       if( Object.keys(operationEdit).length == 0){
@@ -156,8 +165,6 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
                             options = {[
                               {id: 1, name: 'Compra'},
                               {id: 2, name: 'Venta'},
-                              {id: 3, name: 'Ingreso'},
-                              {id: 4, name: 'Egreso'},
                             ]}
 
                             selected = {operationType}

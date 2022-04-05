@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Sidebar } from './components/layouts/Sidebar';
 import { Navbar } from './components/layouts/Navbar'
 import { Portfolio } from './components/Portfolio'
-import { Modal } from './components/layouts/Modal'
+import { Modal } from './components/Modal'
 import { OperationsList } from './components/OperationsList'
 import { Filters } from './components/Filters'
 
