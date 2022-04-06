@@ -3,9 +3,12 @@ import { currencyFormat, generateId } from '../helpers'
 
 import { PieChart } from 'react-minimal-pie-chart'
 
-export const Portfolio = ({operations}) => {
-  const [totalHoldingInvested, setTotalHoldingInvested ] = useState(0)
-  const [chartData, setChartData] = useState([])
+export const Portfolio = ({operations, upodatedPrices}) => {
+  const [ totalHoldingInvested, setTotalHoldingInvested ] = useState(0)
+  const [ chartData, setChartData ] = useState([])
+  const [ holdingCoins, setHoldingCoins ] = useState ([])
+  const [ currentValue, setCurrentValue ] = useState (0)
+
   const segmentsShiftWidth = 0.5;
 
   const customLabelStyle = {
@@ -43,20 +46,35 @@ export const Portfolio = ({operations}) => {
       }
     })
 
-    setChartData(holding.map(element=>{
+    setHoldingCoins(holding)
+
+    setChartData(holding.map(coin=>{
       //formula porcentaje (a es x% de b)
-      const percentage = (100/totalInvested)*element.invested
+      const percentage = (100/totalInvested)*coin.invested
       return {
         id: generateId(),
-        title: element.coinName,
+        title: coin.coinName,
         value: Number(percentage.toFixed(2)),
-        usd: element.invested,
+        amount: coin.coinAmount,
+        usd: coin.invested,
+        //usd: upodatedPrices[coin.coinName].USD * coin.coinAmount,
         color: '#d97706' //amber-600
       }
     }))
 
     setTotalHoldingInvested(totalInvested)
   }, [operations])
+
+  useEffect(() =>{
+    let sum = 0
+    holdingCoins.map((coin)=>{
+      //console.log(upodatedPrices[coin.coinName].USD)
+      sum += upodatedPrices[coin.coinName].USD * coin.coinAmount
+    })
+
+    setCurrentValue(sum)
+
+  }, [upodatedPrices])
 
   return (
     <div className="m-4 p-4">
@@ -75,10 +93,10 @@ export const Portfolio = ({operations}) => {
           />
           <div className="w-full text-amber-500">
             <h3 className="text-center text-3xl">
-              Valor Invertido: {currencyFormat(totalHoldingInvested)}
+              Valor Actual: {currencyFormat(currentValue)}
             </h3>
             <h3 className="text-center text-3xl">
-              Valor Actual: {currencyFormat(totalHoldingInvested)}
+              Valor Invertido: {currencyFormat(totalHoldingInvested)}
             </h3>
           </div>
 
@@ -89,6 +107,7 @@ export const Portfolio = ({operations}) => {
               key = {data.id}
               className="pr-4">
                 <span className="border-amber-600 border-l border-b p-1">% { data.value } </span>
+                <span className="pr-2">{Number(data.amount).toFixed(2)}</span>
                 <span className="pr-2">{ data.title }</span>
                 <span>{ currencyFormat(data.usd) }</span>
             </span>

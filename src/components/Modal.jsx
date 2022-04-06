@@ -1,14 +1,10 @@
 import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { coinsJson } from '../data/coins'
-import { multipleSymbolsPriceAPI } from '../helpers'
-
-
 import Input from './layouts/forms/Input'
 import SelectImage from './layouts/forms/SelectImage'
 
-export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOperation}) => {
+export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOperation, upodatedPrices, coinsJson }) => {
   const [error, setError] = useState(false)
 
   const [id, setId] = useState('')
@@ -18,20 +14,8 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
 
   const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
   const [coin, setCoin] = useState({})
-  const [multipleSymbolsPrice, setMultipleSymbolsPrice] = useState({})
 
   const cancelButtonRef = useRef(null)
-
-  //const [ multipleSymbolsPriceAPI ] = useCryptocompareAPI()
-
-
-  useEffect(()=>{
-    //esperando por la funcion async await
-    multipleSymbolsPriceAPI(coinsJson).then(val => {
-      setMultipleSymbolsPrice( val )
-    })
-
-  }, [])
 
   useEffect(() =>{
     if( Object.keys(operationEdit).length > 0){
@@ -49,10 +33,10 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
   }, [operationEdit])
 
   useEffect(()=>{
-    if(multipleSymbolsPrice[coin.name]){
+    if(upodatedPrices[coin.name]){
       if( Object.keys(operationEdit).length == 0){
 
-        setPrice(multipleSymbolsPrice[coin.name].USD)
+        setPrice(upodatedPrices[coin.name].USD)
       }
     }
   }, [coin])
@@ -62,7 +46,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
       setTimeout(cleanForm, 400);
     }else{
       if( Object.keys(operationEdit).length == 0){
-        setPrice(multipleSymbolsPrice[coin.name].USD)
+        setPrice(upodatedPrices[coin.name].USD)
       }
     }
   },[open])

@@ -21,12 +21,11 @@ export const currencyFormat = (currency) =>{
   })
 }
 
-export const multipleSymbolsPriceAPI = ( async (coinsJson)=>{
+export const cryptoCompareMultipleSymbolsPriceAPI = ( async (coinsJson)=>{
   const symbols = coinsJson.map( symbol =>{ return symbol.name })
   const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD&api_key=7fbc611887888ed2bd9c1886617301d46794a31eb0dbc199a9a87c72c271e53f`
 
   const response = await fetch (url)
   const result = await response.json()
-
   return result
 })

@@ -7,7 +7,9 @@ import { Modal } from './components/Modal'
 import { OperationsList } from './components/OperationsList'
 import { Filters } from './components/Filters'
 
-import { generateId } from './helpers'
+import { generateId, cryptoCompareMultipleSymbolsPriceAPI } from './helpers'
+import { coinsJson } from './data/coins'
+
 import { PlusCircleIcon } from '@heroicons/react/outline'
 
 const App = () => {
@@ -20,8 +22,9 @@ const App = () => {
     ]
   )
   const [operationEdit, setEditOperation] = useState({})
-
   const [filter , setFilter ] = useState ('')
+
+  const [upodatedPrices, setUpodatedPrices] = useState([])
 
   const saveOperation = operation =>{
     if (operation.id){
@@ -43,6 +46,18 @@ const App = () => {
   }
 
   useEffect(()=>{
+
+    (function  cryptoCompareAPI() { 
+      cryptoCompareMultipleSymbolsPriceAPI(coinsJson).then( val => {
+        setUpodatedPrices( val )        
+      })
+
+      setTimeout(cryptoCompareAPI, 5000); 
+    })();
+
+  }, [])
+
+  useEffect(()=>{
     localStorage.setItem('operations', JSON.stringify( operations ))
   },[operations])
 
@@ -59,6 +74,7 @@ const App = () => {
         <main>
           <Portfolio
             operations = {operations}
+            upodatedPrices = {upodatedPrices}
           />
 
           <Filters
@@ -87,6 +103,8 @@ const App = () => {
           saveOperation = {saveOperation}
           operationEdit = {operationEdit}
           setEditOperation = {setEditOperation}
+          upodatedPrices = {upodatedPrices}
+          coinsJson  = {coinsJson }
         />
       </div>
 
