@@ -2,11 +2,11 @@ import { Fragment, useRef, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 import { coinsJson } from '../data/coins'
+import { multipleSymbolsPriceAPI } from '../helpers'
+
 
 import Input from './layouts/forms/Input'
 import SelectImage from './layouts/forms/SelectImage'
-
-import useCryptocompareAPI from '../hooks/useCryptocompareAPI'
 
 export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOperation}) => {
   const [error, setError] = useState(false)
@@ -18,30 +18,18 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
 
   const [operationType, setOperationType] = useState({id: 0, name: "Seleccione Tipo Operacion"})
   const [coin, setCoin] = useState({})
-  const [cryptoCompareMultipleSymbolsPrice, setCryptoCompareMultipleSymbolsPrice] = useState({})
+  const [multipleSymbolsPrice, setMultipleSymbolsPrice] = useState({})
 
   const cancelButtonRef = useRef(null)
 
-  const [ multipleSymbolsPriceAPI ] = useCryptocompareAPI()
+  //const [ multipleSymbolsPriceAPI ] = useCryptocompareAPI()
+
 
   useEffect(()=>{
-    /*const cryptoCompareMultipleSymbolsPriceAPI = ( async ()=>{
-      const symbols = coinsJson.map( symbol =>{ return symbol.name })
-      const url = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${symbols}&tsyms=USD`
-
-      const response = await fetch (url)
-      const result = await response.json()
-
-      setCryptoCompareMultipleSymbolsPrice(result)
-      //console.log("cryptoCompare api lista")
+    //esperando por la funcion async await
+    multipleSymbolsPriceAPI(coinsJson).then(val => {
+      setMultipleSymbolsPrice( val )
     })
-
-    cryptoCompareMultipleSymbolsPriceAPI()*/
-
-    //setCryptoCompareMultipleSymbolsPrice(multipleSymbolsPriceAPI)
-
-    console.log(multipleSymbolsPriceAPI)
-
 
   }, [])
 
@@ -61,10 +49,10 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
   }, [operationEdit])
 
   useEffect(()=>{
-    if(cryptoCompareMultipleSymbolsPrice[coin.name]){
+    if(multipleSymbolsPrice[coin.name]){
       if( Object.keys(operationEdit).length == 0){
-        console.log("select")
-        setPrice(cryptoCompareMultipleSymbolsPrice[coin.name].USD)
+
+        setPrice(multipleSymbolsPrice[coin.name].USD)
       }
     }
   }, [coin])
@@ -74,8 +62,7 @@ export const Modal = ({open, setOpen, saveOperation, operationEdit, setEditOpera
       setTimeout(cleanForm, 400);
     }else{
       if( Object.keys(operationEdit).length == 0){
-        console.log("modificando el precio")
-        setPrice(cryptoCompareMultipleSymbolsPrice[coin.name].USD)
+        setPrice(multipleSymbolsPrice[coin.name].USD)
       }
     }
   },[open])
