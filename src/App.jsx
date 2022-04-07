@@ -59,15 +59,14 @@ const App = () => {
     updatePrices()
 
     setInterval(() => {
+      //pendiente
       c++
-      if(c == 10){
+      if(c == 25){
         updatePrices()
         c=0
       }
       setCounter(c)
-
       //console.log(c)
-
     }, 200);
 
   }, [])

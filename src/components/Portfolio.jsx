@@ -25,9 +25,9 @@ export const Portfolio = ({operations, upodatedPrices, counter}) => {
 
     let holding = []
     let totalInvested = 0
-    let coinAmount = 0
     Object.getOwnPropertyNames(operationsGroupByCoin).forEach(propertyName => {
       let invested = 0
+      let coinAmount = 0
 
       operationsGroupByCoin[propertyName].forEach(operation => {
         if(operation.type.name === "Compra"){
@@ -70,7 +70,6 @@ export const Portfolio = ({operations, upodatedPrices, counter}) => {
       //console.log(upodatedPrices[coin.coinName].USD)
       sum += upodatedPrices[coin.coinName].USD * coin.coinAmount
     })
-    console.log(sum)
     setCurrentValue(sum)
 
   }, [upodatedPrices])
