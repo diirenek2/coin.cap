@@ -23,6 +23,7 @@ const App = () => {
   )
   const [operationEdit, setEditOperation] = useState({})
   const [filter , setFilter ] = useState ('')
+  const [counter, setCounter] = useState (0)
 
   const [upodatedPrices, setUpodatedPrices] = useState([])
 
@@ -39,21 +40,35 @@ const App = () => {
       setOperations([...operations, operation])
     }
   }
+
   const deleteOperation = id =>{
     const updatedOperations = operations.filter(operation => operation.id !== id)
-
     setOperations(updatedOperations)
   }
 
   useEffect(()=>{
 
-    (function  cryptoCompareAPI() { 
+    const updatePrices = (()=>{
+      console.log('updateado')
       cryptoCompareMultipleSymbolsPriceAPI(coinsJson).then( val => {
         setUpodatedPrices( val )        
       })
+    })
 
-      setTimeout(cryptoCompareAPI, 5000); 
-    })();
+    let c=0
+    updatePrices()
+
+    setInterval(() => {
+      c++
+      if(c == 10){
+        updatePrices()
+        c=0
+      }
+      setCounter(c)
+
+      //console.log(c)
+
+    }, 200);
 
   }, [])
 
@@ -75,6 +90,7 @@ const App = () => {
           <Portfolio
             operations = {operations}
             upodatedPrices = {upodatedPrices}
+            counter = {counter}
           />
 
           <Filters

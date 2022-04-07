@@ -3,19 +3,18 @@ import { currencyFormat, generateId } from '../helpers'
 
 import { PieChart } from 'react-minimal-pie-chart'
 
-export const Portfolio = ({operations, upodatedPrices}) => {
+export const Portfolio = ({operations, upodatedPrices, counter}) => {
   const [ totalHoldingInvested, setTotalHoldingInvested ] = useState(0)
   const [ chartData, setChartData ] = useState([])
   const [ holdingCoins, setHoldingCoins ] = useState ([])
   const [ currentValue, setCurrentValue ] = useState (0)
 
   const segmentsShiftWidth = 0.5;
-
   const customLabelStyle = {
     fontSize: '10px',
     fontFamily: 'sans-serif',
     fill: '#e2e8f0'//slate-200
-  };
+  }
 
   useEffect(() => {
     //agrupa las operaciones segun las coins
@@ -71,7 +70,7 @@ export const Portfolio = ({operations, upodatedPrices}) => {
       //console.log(upodatedPrices[coin.coinName].USD)
       sum += upodatedPrices[coin.coinName].USD * coin.coinAmount
     })
-
+    console.log(sum)
     setCurrentValue(sum)
 
   }, [upodatedPrices])
@@ -91,15 +90,22 @@ export const Portfolio = ({operations, upodatedPrices}) => {
               ...customLabelStyle,
             }}
           />
-          <div className="w-full text-amber-500">
-            <h3 className="text-center text-3xl">
-              Valor Actual: {currencyFormat(currentValue)}
-            </h3>
-            <h3 className="text-center text-3xl">
-              Valor Invertido: {currencyFormat(totalHoldingInvested)}
-            </h3>
+          <div className="w-full text-slate-200">
+            <div className="text-3xl flex justify-end">
+              <div> Valor Actual: {currencyFormat(currentValue)} </div>
+              <PieChart
+                className="w-6"
+                data={[{value: counter, color: '#e2e8f0' },]}
+                labelStyle={{...customLabelStyle,}}
+                totalValue = "25"
+              />
+            </div>
+            <div className="text-3xl flex justify-end">
+              <h3 className="text-2xl text-amber-500">
+                Valor Invertido: {currencyFormat(totalHoldingInvested)}
+              </h3>
+            </div>
           </div>
-
         </div>
         <div className="">
           {chartData.map( data => (
