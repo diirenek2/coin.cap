@@ -1,4 +1,6 @@
 import React from "react";
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import GitHubIcon from '@mui/icons-material/GitHub'
 
 export const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -20,7 +22,7 @@ export const Navbar = () => {
                   href="https://github.com/diirenek2/coin.cap"
                   target="_blank"
                 >
-                  <i className="fab fa-github text-lg leading-lg"></i><span className="ml-2">Github</span>
+                  <GitHubIcon/><span className="ml-1">Github</span>
                 </a>
               </li>
               <li className="nav-item text-slate-300 hover:text-white">
@@ -29,7 +31,7 @@ export const Navbar = () => {
                   href="https://www.linkedin.com/in/daniel-monte-b86614198/"
                   target="_blank"
                 >
-                  <i className="fab fa-linkedin text-lg leading-lg"></i><span className="ml-2">Linkedin</span>
+                  <LinkedInIcon/><span className="ml-1">Linkedin</span>
                 </a>
               </li>
             </ul>

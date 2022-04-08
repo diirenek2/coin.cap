@@ -3,6 +3,8 @@ import { currencyFormat, generateId } from '../helpers'
 
 import { PieChart } from 'react-minimal-pie-chart'
 
+import CircularProgress from '@mui/material/CircularProgress';
+
 export const Portfolio = ({operations, upodatedPrices, counter}) => {
   const [ totalHoldingInvested, setTotalHoldingInvested ] = useState(0)
   const [ chartData, setChartData ] = useState([])
@@ -92,16 +94,11 @@ export const Portfolio = ({operations, upodatedPrices, counter}) => {
           <div className="w-full text-slate-200">
             <div className="text-3xl flex justify-end">
               <div> Valor Actual: {currencyFormat(currentValue)} </div>
-              <PieChart
-                className="w-6"
-                data={[{value: counter, color: '#e2e8f0' },]}
-                labelStyle={{...customLabelStyle,}}
-                totalValue = "25"
-              />
+              <CircularProgress variant="determinate" value={counter} color="inherit" className="p-2"/>
             </div>
             <div className="text-3xl flex justify-end">
-              <h3 className="text-2xl text-amber-500">
-                Valor Invertido: {currencyFormat(totalHoldingInvested)}
+              <h3 className=" text-2xl text-amber-500">
+                Invertido: {currencyFormat(totalHoldingInvested)}
               </h3>
             </div>
           </div>

@@ -60,11 +60,11 @@ const App = () => {
 
     setInterval(() => {
       //pendiente
-      c++
-      c == 25 && (updatePrices(), c=0)
+      c+=20
+      c > 100 && (updatePrices(), c=0)
       setCounter(c)
 
-    }, 200);
+    }, 1000);
 
   }, [])
 
