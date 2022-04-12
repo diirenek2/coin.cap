@@ -28,7 +28,7 @@ export const Navbar = () => {
               <li className="nav-item text-slate-300 hover:text-white">
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug"
-                  href="https://www.linkedin.com/in/daniel-monte-b86614198/"
+                  href="https://www.linkedin.com/in/daniel-h-monte/"
                   target="_blank"
                 >
                   <LinkedInIcon/><span className="ml-1">Linkedin</span>
