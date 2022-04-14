@@ -59,12 +59,10 @@ const App = () => {
     updatePrices()
 
     setInterval(() => {
-      //pendiente
-      c+=20
+      c+=10
       c > 100 && (updatePrices(), c=0)
       setCounter(c)
-
-    }, 1000);
+    }, 500);
 
   }, [])
 
