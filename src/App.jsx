@@ -62,7 +62,7 @@ const App = () => {
       c+=10
       c > 100 && (updatePrices(), c=0)
       setCounter(c)
-    }, 500);
+    }, 250);
 
   }, [])
 
